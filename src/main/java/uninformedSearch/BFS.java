@@ -1,19 +1,20 @@
-package algorithms;
+package uninformedSearch;
 
 import utils.City;
 import utils.Graph;
 
 import java.util.*;
 
-public class BFS extends Algorithm {
+public class BFS extends UninformedAlgorithm {
 
     public BFS(City start, City finish, Graph graph) {
         super(start, finish, graph);
-        System.out.println("- BFS -\n--------------------------------------------------------------------");
     }
 
     @Override
     public void search() {
+        System.out.println("- BFS -\n--------------------------------------------------------------------");
+
         Queue<City> currentQueue = new ArrayDeque<>();
         currentQueue.add(start);
 
@@ -23,12 +24,10 @@ public class BFS extends Algorithm {
         traveledPaths.add(new LinkedList<>());
         traveledPaths.get(0).add(start);
 
-        int counter = 1;
 
+        System.out.print("Движение по дереву: ");
         while (!currentQueue.isEmpty()) {
             City currentCity = currentQueue.poll();
-            System.out.println(counter + ". " + currentCity.getName());
-            counter++;
 
             traveledPaths.add(new LinkedList<>());
             traveledPaths.get(traveledPaths.size() - 1).add(currentCity);
@@ -44,7 +43,10 @@ public class BFS extends Algorithm {
                 }
             }
             if (currentQueue.contains(finish)) {
+                System.out.print(currentCity.getName());
                 break;
+            } else {
+                System.out.print(currentCity.getName() + " -> ");
             }
         }
 
@@ -65,7 +67,6 @@ public class BFS extends Algorithm {
                     if (totalWay.size() != 1) System.out.print(totalWay.pop().getName() + " -> ");
                     else System.out.println(totalWay.pop().getName());
                 }
-                System.out.println("\nАлгоритм нашел путь!\n");
                 break;
             }
         }
