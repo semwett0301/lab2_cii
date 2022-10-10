@@ -7,20 +7,30 @@ import java.util.*;
 
 public class BFS extends UninformedAlgorithm {
 
+    private final List<List<City>> traveledPaths = new LinkedList<>();
+
     public BFS(City start, City finish, Graph graph) {
         super(start, finish, graph);
+        type = "BFS";
     }
 
     @Override
     public void search() {
-        System.out.println("- BFS -\n--------------------------------------------------------------------");
+        System.out.println("- " + type + "-\n--------------------------------------------------------------------");
 
+        searchWay();
+
+        printWay();
+
+        System.out.println("--------------------------------------------------------------------");
+    }
+
+    protected void searchWay() {
         Queue<City> currentQueue = new ArrayDeque<>();
         currentQueue.add(start);
 
         graph.getVisited().put(start, true);
 
-        List<List<City>> traveledPaths = new LinkedList<>();
         traveledPaths.add(new LinkedList<>());
         traveledPaths.get(0).add(start);
 
@@ -49,7 +59,9 @@ public class BFS extends UninformedAlgorithm {
                 System.out.print(currentCity.getName() + " -> ");
             }
         }
+    }
 
+    protected void printWay() {
         Stack<City> totalWay = new Stack<>();
         while (true) {
             for (List<City> cityList : traveledPaths) {
@@ -61,16 +73,16 @@ public class BFS extends UninformedAlgorithm {
             }
             if (finish.equals(start)) {
                 totalWay.push(start);
-                System.out.println("");
+                System.out.println();
                 System.out.print("Путь: ");
-                while(!totalWay.isEmpty()) {
+                while (!totalWay.isEmpty()) {
                     if (totalWay.size() != 1) System.out.print(totalWay.pop().getName() + " -> ");
                     else System.out.println(totalWay.pop().getName());
                 }
                 break;
+            } else {
+                System.out.println("Путь невозможно найти!");
             }
         }
-
-        System.out.println("--------------------------------------------------------------------");
     }
 }

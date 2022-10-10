@@ -14,7 +14,7 @@ public class DFSIterable extends DFSWithLimit{
     @Override
     public void search() {
         for (limit = 1; limit <= 5; limit++) {
-            dfsType = "Iterable DFS (deep: " + limit + ")";
+            type = "Iterable DFS (deep: " + limit + ")";
             super.search();
             totalWay = new LinkedList<>();
             currentLevel = -1;

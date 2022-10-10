@@ -22,5 +22,9 @@ public class Main {
         UninformedAlgorithm iterableDfs = new DFSIterable(start, finish, new Graph());
         iterableDfs.search();
         System.out.println();
+
+        UninformedAlgorithm doubleBfs = new BFSDouble(start, finish, new Graph());
+        doubleBfs.search();
+        System.out.println();
     }
 }

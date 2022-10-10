@@ -11,7 +11,7 @@ public class DFSWithLimit extends DFS {
 
     public DFSWithLimit(City start, City finish, Graph graph) {
         super(start, finish, graph);
-        dfsType = "DFS with limit";
+        type = "DFS with limit";
     }
 
     @Override
