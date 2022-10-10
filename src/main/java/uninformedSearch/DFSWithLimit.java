@@ -52,7 +52,7 @@ public class DFSWithLimit extends DFS {
         if (achievedCity == finish) {
             super.printWay();
         } else {
-            System.out.println("\nНельзя добраться!");
+            System.out.println("Нельзя добраться!");
         }
     }
 }

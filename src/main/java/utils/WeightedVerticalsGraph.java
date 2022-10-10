@@ -11,7 +11,7 @@ public class WeightedVerticalsGraph extends Graph {
         super();
 
         weights.put(City.TALLINN, 0);
-        weights.put(City.RIGA, 278);
+        weights.put(City.RIGA, 308);
         weights.put(City.KAUNAS, 507);
         weights.put(City.ST_PETERBURG, 317);
         weights.put(City.MURMANSK, 1132);

@@ -31,37 +31,42 @@ public class BFSDouble extends BFS {
 
         firstSearchVisited.put(start, true);
         secondSearchVisited.put(finish, true);
+        try {
+            while (!firstCurrentQueue.isEmpty() && !secondCurrentQueue.isEmpty()) {
+                City firstCurrentCity = firstCurrentQueue.poll();
+                City secondCurrentCity = secondCurrentQueue.poll();
 
-        while (!firstCurrentQueue.isEmpty() && !secondCurrentQueue.isEmpty()) {
-            City firstCurrentCity = firstCurrentQueue.poll();
-            City secondCurrentCity = secondCurrentQueue.poll();
+                firstTraveledWay.add(firstCurrentCity);
+                secondTraveledWay.add(secondCurrentCity);
 
-            firstTraveledWay.add(firstCurrentCity);
-            secondTraveledWay.add(secondCurrentCity);
-
-            for (Edge edge : graph.getGraph().get(firstCurrentCity)) {
-                if (!firstSearchVisited.get(edge.getGoal())) {
-                    firstSearchVisited.put(edge.getGoal(), true);
-                    firstCurrentQueue.add(edge.getGoal());
+                for (Edge edge : graph.getGraph().get(firstCurrentCity)) {
+                    if (!firstSearchVisited.get(edge.getGoal())) {
+                        firstSearchVisited.put(edge.getGoal(), true);
+                        firstCurrentQueue.add(edge.getGoal());
+                    }
                 }
-            }
 
-            for (Edge edge : graph.getGraph().get(secondCurrentCity)) {
-                if (!secondSearchVisited.get(edge.getGoal())) {
-                    secondSearchVisited.put(edge.getGoal(), true);
-                    secondCurrentQueue.add(edge.getGoal());
+                for (Edge edge : graph.getGraph().get(secondCurrentCity)) {
+                    if (!secondSearchVisited.get(edge.getGoal())) {
+                        secondSearchVisited.put(edge.getGoal(), true);
+                        secondCurrentQueue.add(edge.getGoal());
+                    }
                 }
-            }
 
-            for (City curCity : firstTraveledWay) {
-                if (secondTraveledWay.contains(curCity)) {
-                    connectedCity = curCity;
-                    break;
+
+                for (City curCity : firstTraveledWay) {
+                    if (secondTraveledWay.contains(curCity)) {
+                        connectedCity = curCity;
+                        break;
+                    }
                 }
-            }
 
-            if (connectedCity != start) break;
+                if (connectedCity != start) break;
+            }
+        } catch (NullPointerException e) {
+            connectedCity = start;
         }
+
     }
 
     @Override

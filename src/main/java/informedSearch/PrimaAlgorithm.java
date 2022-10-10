@@ -3,6 +3,8 @@ package informedSearch;
 import utils.City;
 import utils.Edge;
 
+import java.util.*;
+
 
 public class PrimaAlgorithm extends InformedAlgorithm {
     public PrimaAlgorithm(City start, City finish) {
@@ -12,27 +14,34 @@ public class PrimaAlgorithm extends InformedAlgorithm {
 
     @Override
     public City searchResults() {
+
+        TreeSet<City> citySet = new TreeSet<>((o1, o2) -> {
+            int a = graph.getWeights().get(o1);
+            int b = graph.getWeights().get(o2);
+
+            if (b > a) {
+                return 1;
+            } else if (b < a) {
+                return -1;
+            }
+            return 0;
+        }
+        );
+        citySet.add(start);
+
+
         City currentCity = start;
-        graph.getVisited().put(start, true);
         totalPath.add(start);
 
-        while (currentCity != finish) {
-            int min = Integer.MAX_VALUE;
-            City choice = currentCity;
+        while (currentCity != finish && citySet.size() != 0) {
+            currentCity = citySet.pollLast();
+            graph.getVisited().put(currentCity, true);
+
             for (Edge edge : graph.getGraph().get(currentCity)) {
-                if (graph.getWeights().get(edge.getGoal()) < min && !graph.getVisited().get(edge.getGoal())) {
-                    min = graph.getWeights().get(edge.getGoal());
-                    choice = edge.getGoal();
+                if (!graph.getVisited().get(edge.getGoal())) {
+                    waysFrom.put(edge.getGoal(), currentCity);
+                    citySet.add(edge.getGoal());
                 }
-            }
-
-            graph.getVisited().put(choice, true);
-
-            if (choice != currentCity) {
-                totalPath.add(choice);
-                currentCity = choice;
-            } else {
-                break;
             }
         }
 

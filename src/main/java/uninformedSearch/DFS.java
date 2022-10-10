@@ -48,11 +48,15 @@ public class DFS extends UninformedAlgorithm {
     }
 
     protected void printWay() {
-        System.out.print("Путь: ");
+        if (graph.getVisited().containsKey(finish) && graph.getVisited().get(finish)) {
+            System.out.print("Путь: ");
 
-        while (totalWay.size() > 0) {
-            if (totalWay.size() != 1) System.out.print(totalWay.pop().getName() + " -> ");
-            else System.out.println(totalWay.pop().getName());
+            while (totalWay.size() > 0) {
+                if (totalWay.size() != 1) System.out.print(totalWay.pop().getName() + " -> ");
+                else System.out.println(totalWay.pop().getName());
+            }
+        } else {
+            System.out.println("Невозможно найти путь!");
         }
     }
 }

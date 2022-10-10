@@ -55,31 +55,33 @@ public class BFS extends UninformedAlgorithm {
             }
 
         }
-
-        System.out.print(finish.getName());
     }
 
     protected void printWay() {
-        Stack<City> totalWay = new Stack<>();
-        while (true) {
-            for (List<City> cityList : traveledPaths) {
-                if (cityList.contains(finish)) {
-                    totalWay.push(finish);
-                    finish = cityList.get(0);
+        if (graph.getVisited().containsKey(finish) && graph.getVisited().get(finish)) {
+            Stack<City> totalWay = new Stack<>();
+            while (true) {
+                for (List<City> cityList : traveledPaths) {
+                    if (cityList.contains(finish)) {
+                        totalWay.push(finish);
+                        finish = cityList.get(0);
+                        break;
+                    }
+                }
+
+                if (finish.equals(start)) {
+                    totalWay.push(start);
+                    System.out.println();
+                    System.out.print("Путь: ");
+                    while (!totalWay.isEmpty()) {
+                        if (totalWay.size() != 1) System.out.print(totalWay.pop().getName() + " -> ");
+                        else System.out.println(totalWay.pop().getName());
+                    }
                     break;
                 }
             }
-
-            if (finish.equals(start)) {
-                totalWay.push(start);
-                System.out.println();
-                System.out.print("Путь: ");
-                while (!totalWay.isEmpty()) {
-                    if (totalWay.size() != 1) System.out.print(totalWay.pop().getName() + " -> ");
-                    else System.out.println(totalWay.pop().getName());
-                }
-                break;
-            }
+        } else {
+            System.out.println("Невозможно найти путь!");
         }
     }
 }
