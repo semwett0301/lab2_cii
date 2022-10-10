@@ -1,9 +1,8 @@
 package informedSearch;
 
 import utils.City;
+import utils.Edge;
 
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class PrimaAlgorithm extends InformedAlgorithm {
     public PrimaAlgorithm(City start, City finish) {
@@ -12,8 +11,7 @@ public class PrimaAlgorithm extends InformedAlgorithm {
     }
 
     @Override
-    public void search() {
-        Queue<City> totalPath = new LinkedList<>();
+    public City searchResults() {
         City currentCity = start;
         graph.getVisited().put(start, true);
         totalPath.add(start);
@@ -21,12 +19,13 @@ public class PrimaAlgorithm extends InformedAlgorithm {
         while (currentCity != finish) {
             int min = Integer.MAX_VALUE;
             City choice = currentCity;
-            for (City city : graph.getGraph().get(currentCity)) {
-                if (graph.getWeights().get(city) < min && !graph.getVisited().get(city)) {
-                    min = graph.getWeights().get(city);
-                    choice = city;
+            for (Edge edge : graph.getGraph().get(currentCity)) {
+                if (graph.getWeights().get(edge.getGoal()) < min && !graph.getVisited().get(edge.getGoal())) {
+                    min = graph.getWeights().get(edge.getGoal());
+                    choice = edge.getGoal();
                 }
             }
+
             graph.getVisited().put(choice, true);
 
             if (choice != currentCity) {
@@ -37,15 +36,6 @@ public class PrimaAlgorithm extends InformedAlgorithm {
             }
         }
 
-        if (currentCity == finish) {
-            System.out.print("Путь: ");
-            while (!totalPath.isEmpty()) {
-                if (totalPath.size() == 1) System.out.print(totalPath.poll().getName());
-                else System.out.print(totalPath.poll().getName() + " -> ");
-            }
-            System.out.println();
-        } else {
-            System.out.println("Невозможно найти путь!");
-        }
+        return currentCity;
     }
 }

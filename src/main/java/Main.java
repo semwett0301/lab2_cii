@@ -1,5 +1,6 @@
 import informedSearch.InformedAlgorithm;
 import informedSearch.PrimaAlgorithm;
+import informedSearch.StarAlgorithm;
 import uninformedSearch.*;
 import utils.City;
 import utils.Graph;
@@ -31,6 +32,10 @@ public class Main {
 
         InformedAlgorithm prima = new PrimaAlgorithm(start, finish);
         prima.runSearch();
+        System.out.println();
+
+        InformedAlgorithm aStar = new StarAlgorithm(start, finish);
+        aStar.runSearch();
         System.out.println();
     }
 }

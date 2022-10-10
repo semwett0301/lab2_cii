@@ -1,6 +1,7 @@
 package uninformedSearch;
 
 import utils.City;
+import utils.Edge;
 import utils.Graph;
 
 public class DFSWithLimit extends DFS {
@@ -28,12 +29,12 @@ public class DFSWithLimit extends DFS {
 
         System.out.print(currentCity.getName() + " -> ");
 
-        for (City nextCity : graph.getGraph().get(currentCity)) {
+        for (Edge nextEdge : graph.getGraph().get(currentCity)) {
                 if (currentLevel == limit) {
                     return false;
                 }
 
-                if (DFS(nextCity)) {
+                if (DFS(nextEdge.getGoal())) {
                     return true;
                 }
 

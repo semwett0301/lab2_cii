@@ -1,6 +1,7 @@
 package uninformedSearch;
 
 import utils.City;
+import utils.Edge;
 import utils.Graph;
 
 import java.util.*;
@@ -37,14 +38,14 @@ public class BFS extends UninformedAlgorithm {
             traveledPaths.add(new LinkedList<>());
             traveledPaths.get(traveledPaths.size() - 1).add(currentCity);
 
-            for (City city : graph.getGraph().get(currentCity)) {
-                traveledPaths.get(traveledPaths.size() - 1).add(city);
+            for (Edge edge : graph.getGraph().get(currentCity)) {
+                traveledPaths.get(traveledPaths.size() - 1).add(edge.getGoal());
             }
 
-            for (City city : graph.getGraph().get(currentCity)) {
-                if (!graph.getVisited().get(city)) {
-                    graph.getVisited().put(city, true);
-                    currentQueue.add(city);
+            for (Edge edge : graph.getGraph().get(currentCity)) {
+                if (!graph.getVisited().get(edge.getGoal())) {
+                    graph.getVisited().put(edge.getGoal(), true);
+                    currentQueue.add(edge.getGoal());
                 }
             }
 

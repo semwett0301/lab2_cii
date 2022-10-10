@@ -1,6 +1,7 @@
 package uninformedSearch;
 
 import utils.City;
+import utils.Edge;
 import utils.Graph;
 
 import java.util.LinkedList;
@@ -31,9 +32,9 @@ public class DFS extends UninformedAlgorithm {
 
         System.out.print(currentCity.getName() + " -> ");
 
-        for (City nextCity : graph.getGraph().get(currentCity)) {
-            if (!graph.getVisited().get(nextCity)) {
-                if (DFS(nextCity)) {
+        for (Edge nextEdge : graph.getGraph().get(currentCity)) {
+            if (!graph.getVisited().get(nextEdge.getGoal())) {
+                if (DFS(nextEdge.getGoal())) {
                     return true;
                 }
 

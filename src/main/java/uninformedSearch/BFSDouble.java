@@ -1,6 +1,7 @@
 package uninformedSearch;
 
 import utils.City;
+import utils.Edge;
 import utils.Graph;
 
 import java.util.*;
@@ -38,17 +39,17 @@ public class BFSDouble extends BFS {
             firstTraveledWay.add(firstCurrentCity);
             secondTraveledWay.add(secondCurrentCity);
 
-            for (City i : graph.getGraph().get(firstCurrentCity)) {
-                if (!firstSearchVisited.get(i)) {
-                    firstSearchVisited.put(i, true);
-                    firstCurrentQueue.add(i);
+            for (Edge edge : graph.getGraph().get(firstCurrentCity)) {
+                if (!firstSearchVisited.get(edge.getGoal())) {
+                    firstSearchVisited.put(edge.getGoal(), true);
+                    firstCurrentQueue.add(edge.getGoal());
                 }
             }
 
-            for (City i : graph.getGraph().get(secondCurrentCity)) {
-                if (!secondSearchVisited.get(i)) {
-                    secondSearchVisited.put(i, true);
-                    secondCurrentQueue.add(i);
+            for (Edge edge : graph.getGraph().get(secondCurrentCity)) {
+                if (!secondSearchVisited.get(edge.getGoal())) {
+                    secondSearchVisited.put(edge.getGoal(), true);
+                    secondCurrentQueue.add(edge.getGoal());
                 }
             }
 
