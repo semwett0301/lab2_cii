@@ -9,8 +9,8 @@ public class DFSWithLimit extends DFS {
     protected int currentLevel = -1;
     private City achievedCity;
 
-    public DFSWithLimit(City start, City finish, Graph graph) {
-        super(start, finish, graph);
+    public DFSWithLimit(City start, City finish) {
+        super(start, finish);
         type = "DFS with limit";
     }
 

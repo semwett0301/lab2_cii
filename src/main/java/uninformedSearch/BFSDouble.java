@@ -12,8 +12,8 @@ public class BFSDouble extends BFS {
 
     private City connectedCity = start;
 
-    public BFSDouble(City start, City finish, Graph graph) {
-        super(start, finish, graph);
+    public BFSDouble(City start, City finish) {
+        super(start, finish);
         type = "Double BFS";
     }
 

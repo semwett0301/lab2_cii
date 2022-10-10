@@ -9,18 +9,16 @@ public class DFS extends UninformedAlgorithm {
 
     protected LinkedList<City> totalWay = new LinkedList<>();
 
-    public DFS(City start, City finish, Graph graph) {
-        super(start, finish, graph);
+    public DFS(City start, City finish) {
+        super(start, finish);
         type = "DFS";
     }
 
     @Override
     public void search() {
-        System.out.println("- " + type + " -\n--------------------------------------------------------------------");
         System.out.print("Движение по дереву: ");
         DFS(start);
         printWay();
-        System.out.println("--------------------------------------------------------------------");
     }
 
     protected boolean DFS(City currentCity) {

@@ -9,20 +9,15 @@ public class BFS extends UninformedAlgorithm {
 
     private final List<List<City>> traveledPaths = new LinkedList<>();
 
-    public BFS(City start, City finish, Graph graph) {
-        super(start, finish, graph);
+    public BFS(City start, City finish) {
+        super(start, finish);
         type = "BFS";
     }
 
     @Override
     public void search() {
-        System.out.println("- " + type + "-\n--------------------------------------------------------------------");
-
         searchWay();
-
         printWay();
-
-        System.out.println("--------------------------------------------------------------------");
     }
 
     protected void searchWay() {
@@ -52,13 +47,15 @@ public class BFS extends UninformedAlgorithm {
                     currentQueue.add(city);
                 }
             }
+
+            System.out.print(currentCity.getName() + " -> ");
             if (currentQueue.contains(finish)) {
-                System.out.print(currentCity.getName());
                 break;
-            } else {
-                System.out.print(currentCity.getName() + " -> ");
             }
+
         }
+
+        System.out.print(finish.getName());
     }
 
     protected void printWay() {
@@ -71,6 +68,7 @@ public class BFS extends UninformedAlgorithm {
                     break;
                 }
             }
+
             if (finish.equals(start)) {
                 totalWay.push(start);
                 System.out.println();
@@ -80,8 +78,6 @@ public class BFS extends UninformedAlgorithm {
                     else System.out.println(totalWay.pop().getName());
                 }
                 break;
-            } else {
-                System.out.println("Путь невозможно найти!");
             }
         }
     }

@@ -1,3 +1,5 @@
+import informedSearch.InformedAlgorithm;
+import informedSearch.PrimaAlgorithm;
 import uninformedSearch.*;
 import utils.City;
 import utils.Graph;
@@ -7,24 +9,28 @@ public class Main {
         final City start = City.KAZAN;
         final City finish = City.TALLINN;
 
-        UninformedAlgorithm bfs = new BFS(start, finish, new Graph());
-        bfs.search();
+        UninformedAlgorithm bfs = new BFS(start, finish);
+        bfs.runSearch();
         System.out.println();
 
-        UninformedAlgorithm dfs = new DFS(start, finish, new Graph());
-        dfs.search();
+        UninformedAlgorithm dfs = new DFS(start, finish);
+        dfs.runSearch();
         System.out.println();
 
-        UninformedAlgorithm dfsWithLimit = new DFSWithLimit(start, finish, new Graph());
-        dfsWithLimit.search();
+        UninformedAlgorithm dfsWithLimit = new DFSWithLimit(start, finish);
+        dfsWithLimit.runSearch();
         System.out.println();
 
-        UninformedAlgorithm iterableDfs = new DFSIterable(start, finish, new Graph());
-        iterableDfs.search();
+        UninformedAlgorithm iterableDfs = new DFSIterable(start, finish);
+        iterableDfs.runSearch();
         System.out.println();
 
-        UninformedAlgorithm doubleBfs = new BFSDouble(start, finish, new Graph());
-        doubleBfs.search();
+        UninformedAlgorithm doubleBfs = new BFSDouble(start, finish);
+        doubleBfs.runSearch();
+        System.out.println();
+
+        InformedAlgorithm prima = new PrimaAlgorithm(start, finish);
+        prima.runSearch();
         System.out.println();
     }
 }

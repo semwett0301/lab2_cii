@@ -9,12 +9,18 @@ abstract public class UninformedAlgorithm {
     protected Graph graph;
     protected String type;
 
-    public UninformedAlgorithm(City start, City finish, Graph graph) {
+    public UninformedAlgorithm(City start, City finish) {
         this.start = start;
         this.finish = finish;
-        this.graph = graph;
+        this.graph = new Graph();
     }
 
-    public abstract void search();
+    public void runSearch() {
+        System.out.println("- " + type + " -\n--------------------------------------------------------------------");
+        search();
+        System.out.println("--------------------------------------------------------------------");
+    }
+
+    protected abstract void search();
 }
 
